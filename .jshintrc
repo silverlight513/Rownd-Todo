@@ -1,0 +1,15 @@
+{
+  "predef": [ "Highwayman" ],
+  "browser": true,
+  "camelcase": true,
+  "eqeqeq": true,
+  "curly": true,
+  "devel": true,
+  "eqnull": true,
+  "latedef": true,
+  "newcap": true,
+  "quotmark": true,
+  "trailing": true,
+  "unused": true,
+  "strict": false
+}
