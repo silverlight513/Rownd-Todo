@@ -54,11 +54,19 @@ module.exports = function(grunt) {
           dest: 'dist/assets/js/'
         }]
       },
-      styles: {
+      customStyles: {
         files: [{
           expand: true,
           cwd: 'app/styles/',
           src: ['**.css'],
+          dest: 'dist/assets/css/'
+        }]
+      },
+      libStyles: {
+        files: [{
+          expand: true,
+          cwd: 'node_modules/todomvc-app-css/',
+          src: ['index.css'],
           dest: 'dist/assets/css/'
         }]
       },
