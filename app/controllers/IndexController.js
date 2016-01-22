@@ -8,9 +8,7 @@ App.createController('index', {
     'template': 'index'
   },
 
-  'controller': function(routeData){
-    console.log('This is the index route. Route data below:');
-    console.log(routeData);
+  'controller': function(){
   },
 
   'actions': {

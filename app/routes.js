@@ -6,7 +6,8 @@
 */
 
 var App = Rownd.start({
-  debug: false
+    'debug': false,
+    'hideInfo': true
 });
 
 // An example index route
