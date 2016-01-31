@@ -1,32 +1,48 @@
 <section class="todoapp">
-    <header class="header">
-        <h1>todos</h1>
-        <form class="todo-form">
-            <input class="new-todo" placeholder="What needs to be done?" autofocus="">
-        </form>
-    </header>
-    <section class="main">
-        <input class="toggle-all" type="checkbox">
-        <label for="toggle-all">Mark all as complete</label>
-        <ul class="todo-list">
-            <!-- ngRepeat: todo in todos | filter:statusFilter track by $index -->
-        </ul>
-    </section>
+  <header class="header">
+    <h1>todos</h1>
+    <input class="new-todo" placeholder="What needs to be done?" autofocus on-keyup="createTodo:{{newTodo}}" value="{{newTodo}}">
+  </header>
+  <!-- This section should be hidden by default and shown when there are todos -->
+  <section class="main">
+    <input class="toggle-all" type="checkbox">
+    <label for="toggle-all">Mark all as complete</label>
+    <ul class="todo-list">
+      {{#if todos}}
+        {{#each todos:index}}
+          <li class="{{ this.completed ? 'completed' : '' }} {{ this.editing ? 'editing' : '' }}">
+            <div class="view">
+              <input class="toggle" type="checkbox" checked="{{this.completed}}">
+              <label on-dblclick="editTodo">{{this.value}}</label>
+              <button class="destroy" on-click="destroyTodo:{{index}}"></button>
+            </div>
+            <input class="edit" value="{{this.value}}" on-keyup="editingValue">
+          </li>
+        {{/each}}
+      {{/if}}
+      <li>
+    </ul>
+  </section>
+  {{#if todos}}
     <footer class="footer">
-        <span class="todo-count"><strong>0</strong>
-            <span>items left</span>
-        </span>
-        <ul class="filters">
-            <li>
-                <a href="#/" class="selected">All</a>
-            </li>
-            <li>
-                <a href="#/active">Active</a>
-            </li>
-            <li>
-                <a href="#/completed">Completed</a>
-            </li>
-        </ul>
-        <button class="clear-completed">Clear completed</button>
+      <!-- This should be `0 items left` by default -->
+      <span class="todo-count"><strong>{{notCompletedCount}}</strong> item{{#if todos.length === 1}}s{{/if}} left</span>
+      <!-- Remove this if you don't implement routing -->
+      <ul class="filters">
+        <li>
+          <a class="selected" href="#/">All</a>
+        </li>
+        <li>
+          <a href="#/active">Active</a>
+        </li>
+        <li>
+          <a href="#/completed">Completed</a>
+        </li>
+      </ul>
+      <!-- Hidden if no completed items are left ↓ -->
+      <button class="clear-completed" on-click="clearCompleted">Clear completed</button>
     </footer>
+  {{/if}}
 </section>
+
+{{> footer}}

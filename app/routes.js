@@ -17,13 +17,13 @@ App.createRoute({
 });
 
 App.createRoute({
-  'controller' : 'other',
-  'path' : '/other'
+  'controller' : 'completed',
+  'path' : '/completed'
 });
 
 App.createRoute({
-  'controller': 'omg',
-  'path' : '/:one/omg'
+  'controller': 'active',
+  'path' : '/active'
 });
 
 // The 404 handler

@@ -11,5 +11,6 @@
   "quotmark": true,
   "trailing": true,
   "unused": true,
-  "strict": false
+  "strict": false,
+  "debug": true
 }
