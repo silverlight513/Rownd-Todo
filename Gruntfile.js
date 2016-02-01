@@ -15,10 +15,10 @@ module.exports = function(grunt) {
       jsLibs: {
         src:
           [
-            'node_modules/rownd/dist/rownd.js'
+            'node_modules/rownd/rownd.js'
             // Add js libs here
           ],
-        dest: 'dist/assets/js/project-libs.js'
+        dest: 'assets/js/project-libs.js'
       },
       app: {
         src: [
@@ -26,14 +26,14 @@ module.exports = function(grunt) {
           'app/helpers/**/*.js',
           'app/controllers/**/*.js'
         ],
-        dest: 'dist/assets/js/project-app.js'
+        dest: 'assets/js/project-app.js'
       }
     },
 
     rowndCompile: {
       template: {
         src: 'app/views/**/*.handlebars',
-        dest: 'dist/assets/js/project-templates.js'
+        dest: 'assets/js/project-templates.js'
       }
     },
 
@@ -43,7 +43,7 @@ module.exports = function(grunt) {
           expand: true,
           cwd: 'app/',
           src: ['index.html'],
-          dest: 'dist/'
+          dest: ''
         }]
       },
       ractiveMap: {
@@ -51,7 +51,7 @@ module.exports = function(grunt) {
           expand: true,
           cwd: 'node_modules/ractive/',
           src: ['ractive.js.map'],
-          dest: 'dist/assets/js/'
+          dest: 'assets/js/'
         }]
       },
       customStyles: {
@@ -59,7 +59,7 @@ module.exports = function(grunt) {
           expand: true,
           cwd: 'app/styles/',
           src: ['**.css'],
-          dest: 'dist/assets/css/'
+          dest: 'assets/css/'
         }]
       },
       libStyles: {
@@ -67,7 +67,7 @@ module.exports = function(grunt) {
           expand: true,
           cwd: 'node_modules/todomvc-app-css/',
           src: ['index.css'],
-          dest: 'dist/assets/css/'
+          dest: 'assets/css/'
         }]
       },
       images: {
@@ -75,7 +75,7 @@ module.exports = function(grunt) {
           expand: true,
           cwd: 'app/images',
           src: ['**/*'],
-          dest: 'dist/assets/images/'
+          dest: 'assets/images/'
         }]
       }
     },
@@ -97,12 +97,12 @@ module.exports = function(grunt) {
       },
       libs: {
         files: {
-          'dist/assets/js/project-libs.js' : 'dist/assets/js/project-libs.js'
+          'assets/js/project-libs.js' : 'assets/js/project-libs.js'
         }
       },
       app: {
         files: {
-          'dist/assets/js/project-app.js' : 'dist/assets/js/project-app.js'
+          'assets/js/project-app.js' : 'assets/js/project-app.js'
         }
       }
     },
