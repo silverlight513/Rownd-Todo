@@ -2,7 +2,7 @@
  * This is a page controller, it should contain the actions/functions related to
  * the current page.
 */
-App.createController('index', {
+rnd.createController('index', {
 
   'view': {
     'template': 'index',
@@ -43,7 +43,7 @@ App.createController('index', {
         this.push('todos', newTodo);
 
         // Update localstorage
-        App.Helpers.updateLocalStorage(this.get('todos'));
+        rnd.Helpers.updateLocalStorage(this.get('todos'));
 
         // Clear the input value
         this.set('newTodo', '');
@@ -54,7 +54,7 @@ App.createController('index', {
       this.splice('todos', index, 1);
 
       // Update localstorage
-      App.Helpers.updateLocalStorage(this.get('todos'));
+      rnd.Helpers.updateLocalStorage(this.get('todos'));
     },
     editTodo: function(e) {
       // Get the value and switch boolean value
@@ -63,7 +63,7 @@ App.createController('index', {
       this.set(e.keypath, item);
 
       // Update localstorage
-      App.Helpers.updateLocalStorage(this.get('todos'));
+      rnd.Helpers.updateLocalStorage(this.get('todos'));
     },
     editingValue: function(e) {
       // Get the keycode to determine if submitting
@@ -75,7 +75,7 @@ App.createController('index', {
         this.set(e.keypath, item);
 
         // Update localstorage
-        App.Helpers.updateLocalStorage(this.get('todos'));
+        rnd.Helpers.updateLocalStorage(this.get('todos'));
       }
     },
     updateCompletion: function(e) {
@@ -86,7 +86,7 @@ App.createController('index', {
       }
 
       // Update localstorage
-      App.Helpers.updateLocalStorage(this.get('todos'));
+      rnd.Helpers.updateLocalStorage(this.get('todos'));
     },
     clearCompleted: function() {
       // Get the todos array and loop over
@@ -99,7 +99,7 @@ App.createController('index', {
       }
 
       // Update localstorage
-      App.Helpers.updateLocalStorage(this.get('todos'));
+      rnd.Helpers.updateLocalStorage(this.get('todos'));
     }
   }
 
