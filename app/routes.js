@@ -7,7 +7,8 @@
 
 var App = Rownd.start({
     'debug': false,
-    'hideInfo': true
+    'hideInfo': true,
+    'rootUrl': '/Rownd-Todo'
 });
 
 // An example index route
