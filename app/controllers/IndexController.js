@@ -45,6 +45,9 @@ rnd.createController('index', {
         // Update localstorage
         rnd.Helpers.updateLocalStorage(this.get('todos'));
 
+        // Increase number of todos left to complete
+        this.add('notCompletedCount');
+
         // Clear the input value
         this.set('newTodo', '');
       }
@@ -55,6 +58,9 @@ rnd.createController('index', {
 
       // Update localstorage
       rnd.Helpers.updateLocalStorage(this.get('todos'));
+
+      // Decrease number of todos left to complete
+      this.subtract('notCompletedCount');
     },
     editTodo: function(e) {
       // Get the value and switch boolean value
@@ -92,7 +98,7 @@ rnd.createController('index', {
       // Get the todos array and loop over
       var todos = this.get('todos');
 
-      for (var i = 0; i < todos.length; i++) {
+      for (var i = todos.length - 1; i >= 0; i--) {
         if(todos[i].completed) {
           todos.splice(i, 1);
         }
