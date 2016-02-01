@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "matchdep": "^0.3.0",
-    "rownd": "^0.2.4",
+    "rownd": "^0.3.0",
     "todomvc-app-css": "^2.0.4"
   }
 }
