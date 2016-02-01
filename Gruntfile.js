@@ -15,7 +15,7 @@ module.exports = function(grunt) {
       jsLibs: {
         src:
           [
-            'node_modules/rownd/rownd.js'
+            'node_modules/rownd/dist/rownd.js'
             // Add js libs here
           ],
         dest: 'assets/js/project-libs.js'
