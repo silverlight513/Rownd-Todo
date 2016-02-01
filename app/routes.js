@@ -17,12 +17,12 @@ App.createRoute({
 });
 
 App.createRoute({
-  'controller' : 'completed',
+  'controller' : 'index',
   'path' : '/completed'
 });
 
 App.createRoute({
-  'controller': 'active',
+  'controller': 'index',
   'path' : '/active'
 });
 

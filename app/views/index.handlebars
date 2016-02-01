@@ -10,9 +10,14 @@
     <ul class="todo-list">
       {{#if todos}}
         {{#each todos:index}}
-          <li class="{{ this.completed ? 'completed' : '' }} {{ this.editing ? 'editing' : '' }}">
+          <li class="
+            {{ this.completed ? 'completed' : '' }}
+            {{ this.editing ? 'editing' : '' }}
+            {{ path === '/active' && this.completed ? 'hide' : ''}}
+            {{ path === '/completed' && !this.completed ? 'hide' : ''}}
+          " >
             <div class="view">
-              <input class="toggle" type="checkbox" checked="{{this.completed}}">
+              <input class="toggle" type="checkbox" checked="{{this.completed}}" on-change="updateCompletion">
               <label on-dblclick="editTodo">{{this.value}}</label>
               <button class="destroy" on-click="destroyTodo:{{index}}"></button>
             </div>
@@ -30,13 +35,13 @@
       <!-- Remove this if you don't implement routing -->
       <ul class="filters">
         <li>
-          <a class="selected" href="#/">All</a>
+          <a {{#if path === '/'}}class="selected"{{/if}} href="#/">All</a>
         </li>
         <li>
-          <a href="#/active">Active</a>
+          <a {{#if path === '/active'}}class="selected"{{/if}} href="#/active">Active</a>
         </li>
         <li>
-          <a href="#/completed">Completed</a>
+          <a {{#if path === '/completed'}}class="selected"{{/if}} href="#/completed">Completed</a>
         </li>
       </ul>
       <!-- Hidden if no completed items are left ↓ -->

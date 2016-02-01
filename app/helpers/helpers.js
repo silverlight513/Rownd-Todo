@@ -2,6 +2,6 @@
 /* This is where re-usable helpers go that you can
  * use in multiple controllers.
 */
-App.Helpers.stringifyJSON = function(data){
-  return JSON.stringify(data);
+App.Helpers.updateLocalStorage = function(todos){
+  localStorage.setItem('todos', JSON.stringify(todos));
 };

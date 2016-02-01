@@ -12,28 +12,25 @@ App.createController('index', {
     }
   },
 
-  'controller': function(){
-    var storedTodos = JSON.parse(localStorage.getItem('todos')) || [];
-    // Update the counter on completion change/creation of and item
-    this.observe('todos.*.completed', function(newValue, oldValue) {
-      if(!newValue && (oldValue === true || oldValue === undefined)) {
-        this.add('notCompletedCount');
-      } else if(newValue && !oldValue) {
-        this.subtract('notCompletedCount');
-      }
-    });
+  'controller': function(routeData){
+    // Add route data to the model so it can be used on the templates
+    this.set('path', routeData.path);
 
-    // Update localstorage with latest code
-    this.observe('todos.*.*', function() {
-      // Get latest todos from model
-      var todos = this.get('todos');
-      if(JSON.stringify(todos) !== JSON.stringify(storedTodos)){
-        // Copy the array
-        storedTodos = JSON.parse(JSON.stringify(todos));
-        // Update the localstorage
-        localStorage.setItem('todos', JSON.stringify(storedTodos));
+    // Get the list of todos from LocalStorage and add to model
+    var todos = JSON.parse(localStorage.getItem('todos')) || [];
+    this.set('todos', todos);
+
+    // Reset the not completed count for each page load
+    this.set('notCompletedCount', 0);
+
+    // Count the amount of todos that are completed
+    if(todos.length) {
+      for (var i = todos.length - 1; i >= 0; i--) {
+        if(!todos[i].completed) {
+          this.add('notCompletedCount');
+        }
       }
-    });
+    }
   },
 
   'actions': {
@@ -45,6 +42,9 @@ App.createController('index', {
         var newTodo = {value: newTask, editing: false, completed: false};
         this.push('todos', newTodo);
 
+        // Update localstorage
+        App.Helpers.updateLocalStorage(this.get('todos'));
+
         // Clear the input value
         this.set('newTodo', '');
       }
@@ -52,12 +52,18 @@ App.createController('index', {
     destroyTodo: function(e, index) {
       // Remove item at given index
       this.splice('todos', index, 1);
+
+      // Update localstorage
+      App.Helpers.updateLocalStorage(this.get('todos'));
     },
     editTodo: function(e) {
       // Get the value and switch boolean value
       var item = this.get(e.keypath);
       item.editing = !item.editing;
       this.set(e.keypath, item);
+
+      // Update localstorage
+      App.Helpers.updateLocalStorage(this.get('todos'));
     },
     editingValue: function(e) {
       // Get the keycode to determine if submitting
@@ -67,6 +73,16 @@ App.createController('index', {
         // Finish editing
         item.editing = false;
         this.set(e.keypath, item);
+
+        // Update localstorage
+        App.Helpers.updateLocalStorage(this.get('todos'));
+      }
+    },
+    updateCompletion: function(e) {
+      if(e.context.completed) {
+        this.subtract('notCompletedCount');
+      } else {
+        this.add('notCompletedCount');
       }
     },
     clearCompleted: function() {
@@ -78,6 +94,9 @@ App.createController('index', {
           todos.splice(i, 1);
         }
       }
+
+      // Update localstorage
+      App.Helpers.updateLocalStorage(this.get('todos'));
     }
   }
 
