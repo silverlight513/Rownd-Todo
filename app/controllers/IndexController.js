@@ -84,6 +84,9 @@ App.createController('index', {
       } else {
         this.add('notCompletedCount');
       }
+
+      // Update localstorage
+      App.Helpers.updateLocalStorage(this.get('todos'));
     },
     clearCompleted: function() {
       // Get the todos array and loop over
