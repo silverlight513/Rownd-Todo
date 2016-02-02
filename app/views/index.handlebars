@@ -13,8 +13,8 @@
           <li class="
             {{ this.completed ? 'completed' : '' }}
             {{ this.editing ? 'editing' : '' }}
-            {{ path === '/active' && this.completed ? 'hide' : ''}}
-            {{ path === '/completed' && !this.completed ? 'hide' : ''}}
+            {{ path === '/active' && this.completed ? 'hidden' : ''}}
+            {{ path === '/completed' && !this.completed ? 'hidden' : ''}}
           " >
             <div class="view">
               <input class="toggle" type="checkbox" checked="{{this.completed}}" on-change="updateCompletion">
